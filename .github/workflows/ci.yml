@@ -7,8 +7,9 @@ on:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    env:
-      terraform-dir: ./env/stg
+    defaults:
+      run:
+        working-directory: ./env/stg
 
     steps:
       - name: checkout source
