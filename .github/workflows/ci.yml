@@ -21,7 +21,7 @@ jobs:
           terraform_version: 1.0.5
 
       - name: check
-        uses: ./.github/workflows/terraform-plan
+        uses: .github/workflows/terraform-plan
 
       - name: comment diff
         uses: actions/github-script@v5.0.0
