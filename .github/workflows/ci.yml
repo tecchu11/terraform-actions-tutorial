@@ -40,24 +40,24 @@ jobs:
 
       - uses: actions/github-script@0.9.0
         env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+          plan: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style \`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization \`${{ steps.init.outcome }}\`
-            #### Terraform Validation \`${{ steps.validate.outputs.stdout }}\`
-            #### Terraform Plan  \`${{ steps.plan.outcome }}\`
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outputs.stdout }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${process.env.PLAN}
+            ${process.env.plan}
             \`\`\`
 
             </details>
 
-            *Pusher: @${{ github.actor }};
+            *Pusher: ${{ github.actor }} \`*`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
