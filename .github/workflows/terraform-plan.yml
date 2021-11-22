@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: move working dir
-        run:
-          working-directory: ./${{ github.event.inputs.environment }}
+        runs:
+          cd ./${{ github.event.inputs.environment }}
 
       - name: setup terraform
         uses: hashicorp/setup-terraform@v1
