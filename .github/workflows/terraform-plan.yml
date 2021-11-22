@@ -10,13 +10,11 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
+    env:
+      terraform-dir: ./${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
-
-      - name: move working dir
-        runs:
-          cd ./${{ github.event.inputs.environment }}
 
       - name: setup terraform
         uses: hashicorp/setup-terraform@v1
@@ -25,10 +23,12 @@ jobs:
 
       - name: terraform init
         run: terraform init
+        working-directory: ${{ env.terraform-dir }}
 
       - name: teraform plan
         id: plan
         run: terraform plan
+        working-directory: ${{ env.terraform-dir }}
 
       - name: print result
         run: |
