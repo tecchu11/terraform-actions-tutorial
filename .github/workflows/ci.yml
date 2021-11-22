@@ -21,42 +21,31 @@ jobs:
           terraform_version: 1.0.5
 
       - name: fmt
-        id: fmt
         run: terraform fmt -check
-        continue-on-error: true
 
       - name: init
-        id: init
         run: terraform init
 
       - name: validate
-        id: validate
         run: terraform validate
 
       - name: Terraform Plan
         id: plan
         run: terraform plan
-        continue-on-error: true
 
       - uses: actions/github-script@0.9.0
         env:
-          plan: "terraform\n${{ steps.plan.outputs.stdout }}"
+          plan: ${{ steps.plan.outputs.stdout }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outputs.stdout }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
-
+            const output = `#### Terraform Format and Style \`${{ steps.fmt.outcome }}\`
+            #### Terraform Plan \`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
-
             \`\`\`\n
             ${process.env.plan}
             \`\`\`
-
             </details>
-
             *Pusher: ${{ github.actor }} \`*`;
 
             github.issues.createComment({
