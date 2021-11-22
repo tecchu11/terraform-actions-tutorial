@@ -10,12 +10,13 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    defaults:
-      run:
-        working-directory: ./${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
+
+      - name: move working dir
+        run:
+          working-directory: ./${{ github.event.inputs.environment }}
 
       - name: setup terraform
         uses: hashicorp/setup-terraform@v1
