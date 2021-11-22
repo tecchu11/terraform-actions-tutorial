@@ -39,17 +39,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Plan \`${{ steps.plan.outcome }}\`
+            const output = `## Terraform Plan \`${{ steps.plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
 
-            \`\`\`\n
-            ${process.env.plan}
-            \`\`\`
+            \`\`\`\n${process.env.plan}\`\`\`
 
-            </details>
-
-            *Pusher: @${{ github.actor }};
+            </details>';
 
             github.issues.createComment({
               issue_number: context.issue.number,
