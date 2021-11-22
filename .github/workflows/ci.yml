@@ -38,9 +38,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Plan
+            const output = `####  latest terraform plan.
 
-            <details><summary>Show Plan</summary>
+            <details><summary>show execution plan</summary>
 
             \`\`\`${{ steps.plan.outputs.stdout }}\`\`\`
 
