@@ -21,7 +21,7 @@ jobs:
           terraform_version: 1.0.5
 
       - name: check
-        uses: ./.github/workflows/composite-plan/
+        uses: /.github/workflows/composite-plan/
 
       - name: comment diff
         uses: actions/github-script@v5.0.0
