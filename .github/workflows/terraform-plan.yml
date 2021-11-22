@@ -1,0 +1,35 @@
+name: terraform plan
+
+on:
+  pull_request:
+    branch: [ main ]
+  workflow_dispatch:
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout source
+        use: actions/checkout@v2
+
+      - name: setup terraform
+        use: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.5
+
+      - name: terraform init
+        run: terraform init
+
+      - name: teraform plan
+        id: plan
+        run: terraform plan
+
+      - name: print result
+        run: |
+          echo ${{ steps.plan.outputs.stdout }}
+          echo ${{ steps.plan.outputs.stderr }}
+          echo ${{ steps.plan.outputs.exitcode }}
+
+
+
+
