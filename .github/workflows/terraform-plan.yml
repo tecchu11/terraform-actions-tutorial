@@ -12,9 +12,7 @@ jobs:
     environment: ${{ github.event.inputs.environment }}
     defualt:
       run:
-        default:
-          run:
-          working-directory: ./${{ github.event.inputs.environment }}
+        working-directory: ./${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
