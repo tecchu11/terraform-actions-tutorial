@@ -42,7 +42,7 @@ jobs:
             const output = `#### Terraform Plan \`${{ steps.plan.outcome }}\`
 
             <details><summary>Show Plan</summary>
-            \`\`\`\n${process.env.plan}\`\`\`
+            \`\`\`${process.env.PLAN}\`\`\`
             </details>`;
 
             github.issues.createComment({
