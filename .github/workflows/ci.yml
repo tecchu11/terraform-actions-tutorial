@@ -43,7 +43,7 @@ jobs:
 
             <details><summary>Show Plan</summary>
             \`\`\`${process.env.plan}\`\`\`
-            </details>`;
+            </details>\`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
