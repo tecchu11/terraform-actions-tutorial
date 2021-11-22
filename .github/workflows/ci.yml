@@ -38,7 +38,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `####latest terraform plan:earth_asia:.
+            const output = `#### latest terraform plan　:earth_asia:
 
             <details><summary>show execution plan</summary>
 
