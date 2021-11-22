@@ -2,15 +2,16 @@ name: checking terraoform code
 
 runs:
   using: "composite"
-    - name: fmt
-      run: terraform fmt -check
+    steps:
+      - name: fmt
+        run: terraform fmt -check
 
-    - name: init
-      run: terraform init
+      - name: init
+        run: terraform init
 
-    - name: validate
-      run: terraform validate
+      - name: validate
+        run: terraform validate
 
-    - name: plan
-      id: plan
-      run: terraform plan -no-color
+      - name: plan
+        id: plan
+        run: terraform plan -no-color
