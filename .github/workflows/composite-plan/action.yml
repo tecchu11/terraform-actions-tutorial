@@ -1,0 +1,16 @@
+name: checking terraoform code
+
+runs:
+  using: "composite"
+    - name: fmt
+      run: terraform fmt -check
+
+    - name: init
+      run: terraform init
+
+    - name: validate
+      run: terraform validate
+
+    - name: plan
+      id: plan
+      run: terraform plan -no-color
