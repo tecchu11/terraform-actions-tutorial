@@ -5,19 +5,19 @@ on:
     branch: [ main ]
   workflow_dispatch:
     inputs:
-      enviroment:
-        type: enviroment
+      environment:
+        type: environment
         default: stg
 
 jobs:
   plan:
     runs-on: ubuntu-latest
-    enviroment: ${{ github.event.inputs.enviroment }}
+    enviroment: ${{ github.event.inputs.environment }}
     defualt:
       run:
         default:
           run:
-          working-directory: ./${{ github.event.inputs.enviroment }}
+          working-directory: ./${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
