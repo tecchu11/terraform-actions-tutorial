@@ -29,13 +29,12 @@ jobs:
       - name: validate
         run: terraform validate
 
-      - name: Terraform Plan
+      - name: plan
         id: plan
         run: terraform plan -no-color
 
-      - uses: actions/github-script@v5.0.0
-        env:
-          plan: ${{ steps.plan.outputs.stdout }}
+      - name: comment diff
+        uses: actions/github-script@v5.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -43,7 +42,7 @@ jobs:
 
             <details><summary>Show Plan</summary>
 
-            \`\`\`${process.env.plan}\`\`\`
+            \`\`\`${{ steps.plan.outputs.stdout }}\`\`\`
 
             </details>`;
 
