@@ -35,7 +35,5 @@ jobs:
           echo ${{ steps.plan.outputs.stdout }}
           echo ${{ steps.plan.outputs.stderr }}
           echo ${{ steps.plan.outputs.exitcode }}
-
-
-
+        continue-on-error: true
 
