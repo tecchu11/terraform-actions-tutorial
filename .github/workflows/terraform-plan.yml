@@ -1,13 +1,10 @@
 name: terraform plan
 
 on:
-  pull_request:
-    branch: [ main ]
   workflow_dispatch:
     inputs:
       environment:
         type: environment
-        default: stg
 
 jobs:
   plan:
