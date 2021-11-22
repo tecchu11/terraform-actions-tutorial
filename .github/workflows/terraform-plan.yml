@@ -10,8 +10,9 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    env:
-      terraform-dir: ./env/${{ github.event.inputs.environment }}
+    defaults:
+      run:
+        working-directory: ./env/${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
@@ -21,19 +22,13 @@ jobs:
         with:
           terraform_version: 1.0.5
 
-      - name: terraform init
+      - name: init
         run: terraform init
-        working-directory: ${{ env.terraform-dir }}
 
-      - name: teraform plan
+      - name: plan
         id: plan
         run: terraform plan
-        working-directory: ${{ env.terraform-dir }}
 
       - name: print result
         run: |
           echo ${{ steps.plan.outputs.stdout }}
-          echo ${{ steps.plan.outputs.stderr }}
-          echo ${{ steps.plan.outputs.exitcode }}
-        continue-on-error: true
-
