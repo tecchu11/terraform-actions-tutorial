@@ -1,5 +1,5 @@
 module "image" {
-  source = "../../modules/image"
+  source              = "../../modules/image"
   nginx_image_version = "1.21.1"
 }
 module "container" {
