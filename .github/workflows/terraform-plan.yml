@@ -22,5 +22,4 @@ jobs:
           working-dir: ./env/${{ github.event.inputs.environment }}
 
       - name: print result
-        run: |
-          echo ${{ steps.composite-plan.outputs.execution-plan }}
+        run: echo ${{ steps.composite-plan.outputs.execution-plan }}
