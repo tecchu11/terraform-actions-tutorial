@@ -1,2 +1,2 @@
 # terraform-actions-tutorial
-This repositoty is an exercise in terraform actions
+This repository is an exercise in terraform actions
