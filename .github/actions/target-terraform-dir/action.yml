@@ -24,7 +24,7 @@ runs:
         script: |
           const { TARGET_ENV } = process.env;
           let result;
-          switch(${TARGET_ENV}) {
+          switch(TARGET_ENV) {
             case "stg":
               result = "./env/stg";
               break;
