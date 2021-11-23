@@ -3,7 +3,7 @@ name: terraform apply
 on:
   workflow_dispatch:
     inputs:
-      enviroment:
+      environment:
         type: environment
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     env:
-      TERRAFORM-DIR: ./env/${{ github.event.inputs.environment }}
+      terraform_dir: ./env/${{ github.event.inputs.environment }}
 
     steps:
       - name: check out source
@@ -24,8 +24,8 @@ jobs:
 
       - name: init
         run: terraform init
-        working-directory: ${{ env.TERRAFORM-DIR }}
+        working-directory: ${{ env.terraform_dir }}
 
       - name: apply
         run: terraform apply -auto-approve
-        working-directory: ${{ env.TERRAFORM-DIR }}
+        working-directory: ${{ env.terraform_dir }}
