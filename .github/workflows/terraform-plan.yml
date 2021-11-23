@@ -14,9 +14,15 @@ jobs:
       - name: checkout source
         uses: actions/checkout@v2
 
+      - name: setup target terraform dir
+        id: tf-dir
+        uses: ./.github/actions/target-terraform-dir
+        with:
+          target-env: ${{ github.event.inputs.environment }}
+
       - name: plan after check
         id: composite-plan
         uses: ./.github/actions/composite-plan
         with:
           terraform-version: '1.0.5'
-          working-dir: ./env/${{ github.event.inputs.environment }}
+          working-dir: ${{steps.tf-dir.outputs.target-dir}}
