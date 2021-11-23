@@ -4,6 +4,13 @@ inputs:
   terraform-version:
     default: '1.0.5'
     required: true
+  workiing-dir:
+    default: ./env/stg
+    required: true
+
+outpus:
+  execution-plan:
+    value: ${{ steps.plan.outputs.stdout }}
 
 runs:
   using: "composite"
@@ -14,14 +21,17 @@ runs:
           terraform_version: ${{ inputs.terraform-version }}
 
       - name: fmt
-        run: terraform fmt -check
+        run: terraform fmt -recursive -check
 
       - name: init
         run: terraform init
+        working-directory: ${{ inputs.working-dir }}
 
       - name: validate
         run: terraform validate
+        working-directory: ${{ inputs.working-dir }}
 
       - name: plan
         id: plan
         run: terraform plan -no-color
+        working-directory: ${{ inputs.working-dir }}
