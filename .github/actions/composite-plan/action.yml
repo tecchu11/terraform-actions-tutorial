@@ -4,7 +4,7 @@ inputs:
   terraform-version:
     default: '1.0.5'
     required: true
-  workiing-dir:
+  working-dir:
     default: ./env/stg
     required: true
 
@@ -15,7 +15,7 @@ outputs:
 runs:
   using: "composite"
     steps:
-      - name: seet up terraform
+      - name: set up terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: ${{ inputs.terraform-version }}
