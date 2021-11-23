@@ -9,7 +9,7 @@ inputs:
 outputs:
   target-dir:
     description: target directory
-    value: ${{ steps.output-dir.outputs.result }
+    value: ${{ steps.output-dir.outputs.result }}
 
 runs:
   using: composite
