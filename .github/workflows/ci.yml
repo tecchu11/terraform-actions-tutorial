@@ -7,31 +7,17 @@ on:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./env/stg
 
     steps:
       - name: checkout source
         uses: actions/checkout@v2
 
-      - name: setup terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: plan after check
+        id: composite-plan
+        uses: ./.github/actions/composite-plan
         with:
-          terraform_version: 1.0.5
-
-      - name: fmt
-        run: terraform fmt -check
-
-      - name: init
-        run: terraform init
-
-      - name: validate
-        run: terraform validate
-
-      - name: plan
-        id: plan
-        run: terraform plan -no-color
+          terraform-version: '1.0.5'
+          working-dir: ./env/stg
 
       - name: comment diff
         uses: actions/github-script@v5.0.0
@@ -42,7 +28,7 @@ jobs:
 
             <details><summary>show execution plan</summary>
 
-            \`\`\`${{ steps.plan.outputs.stdout }}\`\`\`
+            \`\`\`${{ steps.composite-plan.outputs.execution-plan }}\`\`\`
 
             </details>`;
 
