@@ -28,9 +28,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### latest terraform plan　:earth_asia:
+            const output = `#### Latest terraform plan:rocket:
 
-            <details><summary>show execution plan</summary>
+            <details><summary>show plan</summary>
 
             \`\`\`${{ steps.composite-plan.outputs.execution-plan }}\`\`\`
 
