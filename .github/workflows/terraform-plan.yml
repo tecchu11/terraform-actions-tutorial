@@ -20,6 +20,3 @@ jobs:
         with:
           terraform-version: '1.0.5'
           working-dir: ./env/${{ github.event.inputs.environment }}
-
-      - name: print result
-        run: echo ${{ steps.composite-plan.outputs.execution-plan }}
