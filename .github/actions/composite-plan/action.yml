@@ -24,14 +24,14 @@ runs:
       shell: bash
       run: |
         ::group:: recursive checking format
-        terraform fmt -recursive -check
+          terraform fmt -recursive -check
         ::endgroup::
 
     - name: init
       shell: bash
       run: |
         ::group:: init
-        terraform init
+          terraform init
         ::endgroup::
       working-directory: ${{ inputs.working-dir }}
 
@@ -39,7 +39,7 @@ runs:
       shell: bash
       run: |
         ::group:: validate
-        terraform validate
+          terraform validate
         ::endgroup
       working-directory: ${{ inputs.working-dir }}
 
@@ -48,6 +48,6 @@ runs:
       shell: bash
       run: |
         ::group:: execution plan
-        terraform plan -no-color
+          terraform plan -no-color
         ::endgroup::
       working-directory: ${{ inputs.working-dir }}
