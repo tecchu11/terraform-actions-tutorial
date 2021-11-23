@@ -9,6 +9,7 @@ on:
 jobs:
   plan:
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout source
         uses: actions/checkout@v2
