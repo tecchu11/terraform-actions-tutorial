@@ -22,20 +22,32 @@ runs:
 
     - name: fmt
       shell: bash
-      run: terraform fmt -recursive -check
+      run: |
+        ::group:: recursive checking format
+        terraform fmt -recursive -check
+        ::endgroup::
 
     - name: init
       shell: bash
-      run: terraform init
+      run: |
+        ::group:: init
+        terraform init
+        ::endgroup::
       working-directory: ${{ inputs.working-dir }}
 
     - name: validate
       shell: bash
-      run: terraform validate
+      run: |
+        ::group:: validate
+        terraform validate
+        ::endgroup
       working-directory: ${{ inputs.working-dir }}
 
     - name: plan
       id: plan
       shell: bash
-      run: terraform plan -no-color
+      run: |
+        ::group:: execution plan
+        terraform plan -no-color
+        ::endgroup::
       working-directory: ${{ inputs.working-dir }}
