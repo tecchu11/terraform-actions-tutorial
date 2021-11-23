@@ -10,12 +10,16 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    env:
-      terraform_dir: ./env/${{ github.event.inputs.environment }}
 
     steps:
       - name: check out source
         uses: actions/checkout@v2
+
+      - name: setup target terraform dir
+        id: tf-dir
+        uses: ./.github/actions/target-terraform-dir
+        with:
+          target-env: ${{ github.event.inputs.environment }}
 
       - name: set up terraform
         uses: hashicorp/setup-terraform@v1
@@ -24,8 +28,8 @@ jobs:
 
       - name: init
         run: terraform init
-        working-directory: ${{ env.terraform_dir }}
+        working-directory: ${{steps.tf-dir.outputs.target-dir}}
 
       - name: apply
         run: terraform apply -auto-approve
-        working-directory: ${{ env.terraform_dir }}
+        working-directory: ${{steps.tf-dir.outputs.target-dir}}

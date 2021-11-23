@@ -16,12 +16,18 @@ jobs:
       - name: checkout source
         uses: actions/checkout@v2
 
+      - name: setup target terraform dir
+        id: tf-dir
+        uses: ./.github/actions/target-terraform-dir
+        with:
+          target-env: stg
+
       - name: plan after check
         id: composite-plan
         uses: ./.github/actions/composite-plan
         with:
           terraform-version: '1.0.5'
-          working-dir: ./env/stg
+          working-dir: ${{ steps.tf-dir.outputs.target-dir }}
 
       - name: comment diff
         uses: actions/github-script@v5.0.0

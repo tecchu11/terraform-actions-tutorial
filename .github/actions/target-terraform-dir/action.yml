@@ -1,0 +1,35 @@
+name: target terraform dirrectory action
+description: output the directory where terraform will be run
+
+inputs:
+  target-env:
+    description: target env
+    required: true
+
+outputs:
+  target-dir:
+    description: target directory
+    value: ${{ steps.output-dir.outputs.result }}
+
+runs:
+  using: composite
+  steps:
+    - name: scripts returns target dir
+      id: output-dir
+      uses: actions/github-script@v5.0.0
+      env:
+        TARGET_ENV: ${{ inputs.target-env }}
+      with:
+        result-encoding: string
+        script: |
+          const { TARGET_ENV } = process.env;
+          let result;
+          switch(TARGET_ENV) {
+            case "stg":
+              result = "./env/stg";
+              break;
+            default:
+              throw new Error("missing definition")
+          }
+          return result;
+
