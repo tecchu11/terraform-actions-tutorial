@@ -1,15 +1,19 @@
 name: checking terraoform code
+description: steps execute fmt, init, validate and plan
 
 inputs:
   terraform-version:
     default: '1.0.5'
+    description: terraform version
     required: true
   working-dir:
     default: ./env/stg
+    description: directory to run in
     required: true
 
 outputs:
   execution-plan:
+    description: execution plan
     value: ${{ steps.plan.outputs.stdout }}
 
 runs:
