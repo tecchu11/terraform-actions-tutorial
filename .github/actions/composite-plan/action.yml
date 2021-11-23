@@ -21,17 +21,21 @@ runs:
         terraform_version: ${{ inputs.terraform-version }}
 
     - name: fmt
-      shell: terraform fmt -recursive -check
+      shell: bash
+      run: terraform fmt -recursive -check
 
     - name: init
-      shell: terraform init
+      shell: bash
+      run: terraform init
       working-directory: ${{ inputs.working-dir }}
 
     - name: validate
-      shell: terraform validate
+      shell: bash
+      run: terraform validate
       working-directory: ${{ inputs.working-dir }}
 
     - name: plan
       id: plan
-      shell: terraform plan -no-color
+      shell: bash
+      run: terraform plan -no-color
       working-directory: ${{ inputs.working-dir }}
