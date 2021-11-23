@@ -10,25 +10,17 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
-    defaults:
-      run:
-        working-directory: ./env/${{ github.event.inputs.environment }}
     steps:
       - name: checkout source
         uses: actions/checkout@v2
 
-      - name: setup terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: plan after check
+        id: composite-plan
+        uses: ./.github/actions/composite-plan
         with:
-          terraform_version: 1.0.5
-
-      - name: init
-        run: terraform init
-
-      - name: plan
-        id: plan
-        run: terraform plan
+          terraform-version: '1.0.5'
+          working-dir: ./env/${{ github.event.inputs.environment }}
 
       - name: print result
         run: |
-          echo ${{ steps.plan.outputs.stdout }}
+          echo ${{ steps.composite-plan.outputs.execution-plan }}
