@@ -31,4 +31,5 @@ runs:
             default:
               throw new Error("missing definition")
           }
+          return result;
 
