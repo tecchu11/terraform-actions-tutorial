@@ -28,7 +28,7 @@ jobs:
 
       - name: init
         run: terraform init
-        working-directory: $${{steps.tf-dir.outputs.target-dir}}
+        working-directory: ${{steps.tf-dir.outputs.target-dir}}
 
       - name: apply
         run: terraform apply -auto-approve
