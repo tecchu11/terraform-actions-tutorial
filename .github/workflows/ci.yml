@@ -15,13 +15,8 @@ jobs:
       - name: checkout source
         uses: actions/checkout@v2
 
-      - name: setup terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.0.5
-
-      - name: check
-        uses: /.github/workflows/composite-plan/
+      - name: check after plan
+        uses: ./.github/actions/composite-plan
 
       - name: comment diff
         uses: actions/github-script@v5.0.0

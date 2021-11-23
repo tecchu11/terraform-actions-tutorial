@@ -1,8 +1,18 @@
 name: checking terraoform code
 
+inputs:
+  terraform-version:
+    default: '1.0.5'
+    required: true
+
 runs:
   using: "composite"
     steps:
+      - name: seet up terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ inputs.terraform-version }}
+
       - name: fmt
         run: terraform fmt -check
 
