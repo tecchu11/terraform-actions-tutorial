@@ -16,7 +16,7 @@ runs:
   steps:
     - name: scripts returns target dir
       id: output-dir
-      uses: actions/github-script@v5.0.0
+      uses: actions/github-script@v5.1.0
       env:
         TARGET_ENV: ${{ inputs.target-env }}
       with:
